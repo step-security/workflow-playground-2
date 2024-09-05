@@ -1,5 +1,7 @@
 on:
-  pull_request_target
+  pull_request_target:
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - uses: actions/setup-node@v1
     - run: |
