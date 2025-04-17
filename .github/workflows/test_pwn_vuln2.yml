@@ -1,13 +1,16 @@
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
     - name: Harden the runner (Audit all outbound calls)
-      uses: step-security/harden-runner@int
+      uses: step-security/harden-runner@f1db3319d7db49c70352da1f5d1a122f754e8c01 # int
       with:
         egress-policy: audit
 
