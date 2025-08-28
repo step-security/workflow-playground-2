@@ -1,0 +1,18 @@
+name: dispatch-workflow-test-repo
+run-name: Automation Test [${{ github.event.client_payload.distinct_id }}]
+
+on:
+  repository_dispatch:
+    types: [deploy]  # must match the dispatcher's event-type
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo payload
+        run: |
+          echo "event=repository_dispatch"
+          echo "distinct_id=${{ github.event.client_payload.distinct_id }}"
+          echo "string-type=${{ github.event.client_payload.string-type }}"
+          echo "nested.number-type=${{ github.event.client_payload.nested.number-type }}"
+          echo "nested.boolean-type=${{ github.event.client_payload.nested.boolean-type }}"
