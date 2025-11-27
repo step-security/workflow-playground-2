@@ -1,0 +1,13 @@
+name: repository-dispatch-reciever
+on:
+  repository_dispatch:
+    types: [tests]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Received dispatch event!"
+          echo "ref: ${{ github.event.client_payload.ref }}"
+          echo "sha: ${{ github.event.client_payload.sha }}"
